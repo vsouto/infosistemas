@@ -2,16 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as TodoActions from '../actions'
-import Heroes from '../components/Heroes'
-import { getAllHeroes } from '../selectors'
-import md5 from "js-md5"
+import Cars from '../components/Cars'
+import { getAllCars } from '../selectors'
 import fetch from 'cross-fetch'
 import { trackPromise } from 'react-promise-tracker';
 import { Spinner } from '../components/spinner'
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-class HeroesContainer extends React.Component {
+class CarsContainer extends React.Component {
 
   constructor() {
     super();
@@ -19,32 +18,24 @@ class HeroesContainer extends React.Component {
       loading: true,
       searchTerm: ''
     };
-    this.heroes = []
+    this.cars = []
   }
 
   handleChange(event){
     const term = event.target.value
 
     this.setState({ searchTerm: term });
-
-    this.heroes = this.state.heroes.filter(h => h.name.includes(term))
+    this.cars = this.state.cars.filter(h => h.modelo.includes(term))
   };
 
   componentDidMount() {
-    this.retrieveHeroes()
+    this.retrieveCars()
   }
 
-  async retrieveHeroes() {
-
-    // TODO: move keys to .env or AWS Secret
-    const publicKey = '30d0a82c73d7b77eb73af7cbeec001e8'
-    const privateKey = 'e8d123dc921b311a3727d3dd8fa476b7fa0767ad'
-    const ts = Number(new Date());
-    const hash = md5.create();
-    hash.update(ts + privateKey + publicKey);
+  async retrieveCars() {
 
     return trackPromise(
-      fetch(`https://gateway.marvel.com/v1/public/characters?ts=${ts}&orderBy=name&limit=10&apikey=${publicKey}&hash=${hash.hex()}`)
+      fetch(`http://localhost:3001/car`)
         .then(function(response){
           if (!response.ok) {
             console.log('error on api request')
@@ -53,7 +44,8 @@ class HeroesContainer extends React.Component {
         })
         .then(response => {
 
-          this.defineHeroes(response.data.results)
+          console.log('resp ', response); //eslint-disable-line
+          this.defineCars(response)
           return response;
         })
         .catch(error => {
@@ -62,13 +54,13 @@ class HeroesContainer extends React.Component {
     );
   }
 
-  defineHeroes(data) {
-    this.heroes = data
-    this.setState({heroes: data});
+  defineCars(data) {
+    this.cars = data
+    this.setState({cars: data});
   }
 
   render() {
-    const heroes = this.heroes
+    const cars = this.cars
 
     return (
       <div>
@@ -82,14 +74,14 @@ class HeroesContainer extends React.Component {
             onChange={(e) => this.handleChange(e)}
           />
         </FormControl>
-        <Heroes heroes={heroes}/>
+        <Cars cars={cars}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  heroes: getAllHeroes(state)
+  cars: getAllCars(state)
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -99,4 +91,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HeroesContainer)
+)(CarsContainer)

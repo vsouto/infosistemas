@@ -27,7 +27,7 @@ describe('components', () => {
 
       const [ h1, input ] = output.props.children
       expect(h1.type).toBe('h1')
-      expect(h1.props.children).toBe('heroes')
+      expect(h1.props.children).toBe('cars')
       expect(input.props.placeholder).toBe('What needs to be done?')
     })
   })

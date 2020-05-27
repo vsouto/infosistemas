@@ -4,12 +4,12 @@ import {
 
 const initialState = [
   {
-    title: 'Hulk',
+    title: 'Golf',
     id: 0
   }
 ]
 
-export default function heroes(state = initialState, action) {
+export default function cars(state = initialState, action) {
   switch (action.type) {
     case GET_ALL:
       return [

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import heroes from './heroes'
+import cars from './cars'
 
 const rootReducer = combineReducers({
-  heroes
+  cars: cars
 })
 
 export default rootReducer

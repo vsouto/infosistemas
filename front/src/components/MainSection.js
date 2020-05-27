@@ -1,13 +1,12 @@
 import React from 'react'
 import Footer from './Footer'
-import HeroesContainer from '../containers/Heroes'
+import CarsContainer from '../containers/Cars'
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-
 import Alert from '@material-ui/lab/Alert';
 
 export default function MainSection(){
@@ -29,7 +28,7 @@ export default function MainSection(){
         This is app is brought to you by <b>Victor Souto</b>
         <br />
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          App Ecossystem Info
+          App Ecosystem Info
         </Button>
       </Alert>
 
@@ -40,10 +39,10 @@ export default function MainSection(){
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-      <DialogTitle id="alert-dialog-title">{"Victor's Softplan React App"}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">{"Victor's InfoSistemas React App"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          This App was made for Softplan by:
+          This App was made for Infosistemas by:
           <Alert severity="info">
             <b>Victor Souto</b>
             <br />
@@ -52,6 +51,8 @@ export default function MainSection(){
           <br />
           With the following tools:
           <ul>
+            <li>nodejs</li>
+            <li>mongodb</li>
             <li>react</li>
             <li>redux</li>
             <li>material-ui</li>
@@ -71,7 +72,7 @@ export default function MainSection(){
       </DialogActions>
     </Dialog>
     </span>
-      <HeroesContainer />
+      <CarsContainer />
       <Footer />
     </section>
   )

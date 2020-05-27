@@ -1,11 +1,10 @@
 import { createSelector } from 'reselect'
-//import { GET_ALL } from '../constants/ActionTypes'
 
-const getHeroes = state => state.heroes
+const getCars = state => state.cars
 
-export const getAllHeroes = createSelector(
-  [getHeroes],
-  heroes => (
-    heroes
+export const getAllCars = createSelector(
+  [getCars],
+  cars => (
+    cars
   )
 )

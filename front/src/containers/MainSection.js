@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import MainSection from '../components/MainSection'
 
 const mapStateToProps = state => ({
-  heroes: [],
-  heroesCount: state.heroes.length
+  cars: [],
+  carsCount: state.cars.length
 })
 
 

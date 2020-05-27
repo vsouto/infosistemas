@@ -1,10 +1,10 @@
-import heroes from './heroes'
+import cars from './heroes'
 import * as types from '../constants/ActionTypes'
 
 describe('todos reducer', () => {
   it('should handle initial state', () => {
     expect(
-      heroes(undefined, {})
+      cars(undefined, {})
     ).toEqual([
       {
         text: 'Hulk',
@@ -16,7 +16,7 @@ describe('todos reducer', () => {
 
   it('should handle GET_ALL', () => {
     expect(
-      heroes([
+      cars([
         {
           text: 'Run the tests',
           completed: true,
